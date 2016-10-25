@@ -1,0 +1,16 @@
+<%= simple_form_for(@business) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :account_number %>
+    <%= f.input :ownership_name %>
+    <%= f.input :start_date %>
+    <%= f.input :end_data %>
+    <%= f.input :naics_code %>
+    <%= f.input :naics_code_description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

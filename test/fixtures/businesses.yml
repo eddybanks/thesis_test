@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account_number: MyString
+  ownership_name: MyString
+  start_date: 2016-10-24
+  end_data: 2016-10-24
+  naics_code: MyString
+  naics_code_description: MyString
+
+two:
+  account_number: MyString
+  ownership_name: MyString
+  start_date: 2016-10-24
+  end_data: 2016-10-24
+  naics_code: MyString
+  naics_code_description: MyString
