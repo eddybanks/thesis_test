@@ -15,7 +15,7 @@ describe BusinessesController do
 
   it "creates business" do
     expect {
-      post businesses_url, params: { business: { account_number: business.account_number, end_data: business.end_data, naics_code: business.naics_code, naics_code_description: business.naics_code_description, ownership_name: business.ownership_name, start_date: business.start_date } }
+      post businesses_url, params: { business: { account_number: business.account_number, end_date: business.end_date, naics_code: business.naics_code, naics_code_description: business.naics_code_description, ownership_name: business.ownership_name, start_date: business.start_date } }
     }.must_change "Business.count"
 
     must_redirect_to business_path(Business.last)
@@ -32,7 +32,7 @@ describe BusinessesController do
   end
 
   it "updates business" do
-    patch business_url(business), params: { business: { account_number: business.account_number, end_data: business.end_data, naics_code: business.naics_code, naics_code_description: business.naics_code_description, ownership_name: business.ownership_name, start_date: business.start_date } }
+    patch business_url(business), params: { business: { account_number: business.account_number, end_date: business.end_date, naics_code: business.naics_code, naics_code_description: business.naics_code_description, ownership_name: business.ownership_name, start_date: business.start_date } }
     must_redirect_to business_path(business)
   end
 
