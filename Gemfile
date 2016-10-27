@@ -25,6 +25,7 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'underscore-rails'
 gem 'kaminari'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   gem 'byebug', platform: :mri

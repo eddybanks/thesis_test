@@ -6,8 +6,8 @@
     <%= f.input :ownership_name %>
     <%= f.input :start_date %>
     <%= f.input :end_date %>
-    <%= f.input :naics_code %>
-    <%= f.input :naics_code_description %>
+    <%= f.association :naics_code %>
+    <%= f.association :naics_code_description %>
   </div>
 
   <div class="form-actions">
