@@ -5,6 +5,7 @@ class BusinessesController < ApplicationController
   # GET /businesses.json
   def index
     @businesses = Business.all.page params[:page]
+    render json: Business.all
   end
 
   # GET /businesses/1
