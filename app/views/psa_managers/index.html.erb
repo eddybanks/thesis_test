@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Psa Managers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @psa_managers.each do |psa_manager| %>
+      <tr>
+        <td><%= psa_manager.name %></td>
+        <td><%= psa_manager.email %></td>
+        <td><%= psa_manager.number %></td>
+        <td><%= link_to 'Show', psa_manager %></td>
+        <td><%= link_to 'Edit', edit_psa_manager_path(psa_manager) %></td>
+        <td><%= link_to 'Destroy', psa_manager, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Psa Manager', new_psa_manager_path %>

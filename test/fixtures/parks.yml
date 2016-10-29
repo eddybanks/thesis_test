@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  acreage: 1.5
+  old_id: 1
+
+two:
+  name: MyString
+  acreage: 1.5
+  old_id: 1

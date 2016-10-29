@@ -1,0 +1,2 @@
+class PsaManager < ApplicationRecord
+end

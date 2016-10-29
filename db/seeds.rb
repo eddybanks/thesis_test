@@ -1,18 +1,24 @@
 data_hash = []
-CSV.foreach('db/data/sf_opendata.csv', headers: true) do |row|
+CSV.foreach('db/data/recreation_and_park_info.csv', headers: true) do |row|
   data_hash << row.to_hash
 end
 
-data_hash.each do |d|
-  Business.find_or_create_by!(
-    account_number: d['Business Account Number'].present? ? d['Business Account Number'].to_i : nil,
-    ownership_name: d['Ownership Name'].present? ? d['Ownership Name'] : nil,
-    start_date: d['Business Start Date'].present? ? Date.strptime(d['Business Start Date'], "%m/%d/%Y") : nil,
-    end_date: d['Business End Date'].present? ? Date.strptime(d['Business End Date'], "%m/%d/%Y") : nil
-  )
+def to_num number
+  number.gsub(/,/,'').to_i
+end
 
-  NaicsInfo.find_or_create_by(
-    naics_code: d['NAICS Code'].present? ? d['NAICS Code'] : nil,
-    naics_code_description: d['NAICS Code Description'].present? ? d['NAICS Code Description'] : nil
+data_hash.each do |d|
+  Park.find_or_create_by(
+    name: d['ParkName'].present? ? d['ParkName'] : nil,
+    acreage: d['Acreage'].present? ? d['Acreage'].to_f : nil,
+    old_id: d['ParkID'].present? ? to_num(d['ParkID']) : nil
+  )
+  PsaManager.find_or_create_by(
+    name: d['PSAManager'].present? ? d['PSAManager'] : nil,
+    email: d['email'].present? ? d['email'] : nil,
+    number: d['number'].present? ? d['number'] : nil
+  )
+  ParkLocation.find_or_create_by(
+    zipcode: d['Zipcode'].present? ? to_num d['Zipcode'] : nil
   )
 end

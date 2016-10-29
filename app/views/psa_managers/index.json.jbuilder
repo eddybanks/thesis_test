@@ -1,0 +1,1 @@
+json.array! @psa_managers, partial: 'psa_managers/psa_manager', as: :psa_manager

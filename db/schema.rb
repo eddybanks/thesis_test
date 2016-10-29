@@ -10,25 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161027150733) do
+ActiveRecord::Schema.define(version: 20161029193631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "businesses", force: :cascade do |t|
-    t.string   "account_number"
-    t.string   "ownership_name"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "parks", force: :cascade do |t|
+    t.string   "name"
+    t.float    "acreage"
+    t.integer  "old_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "naics_infos", force: :cascade do |t|
-    t.string   "naics_code"
-    t.string   "naics_code_description"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+  create_table "psa_managers", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
