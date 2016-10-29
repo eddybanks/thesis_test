@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :parks
   resources :psa_managers
-  root  'businesses#index'
+  root  'parks#index'
   devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   if Rails.env.development?

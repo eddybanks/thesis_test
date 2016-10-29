@@ -19,6 +19,6 @@ data_hash.each do |d|
     number: d['number'].present? ? d['number'] : nil
   )
   ParkLocation.find_or_create_by(
-    zipcode: d['Zipcode'].present? ? to_num d['Zipcode'] : nil
+    zipcode: d['Zipcode'].present? ? to_num(d['Zipcode']) : nil
   )
 end
