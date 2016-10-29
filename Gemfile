@@ -17,7 +17,6 @@ gem 'vuejs-rails'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'graphql'
 gem "graphiql-rails"
-gem 'graphql-parser'
 gem 'normalize-rails'
 gem 'paper_trail'
 gem 'simple_form'
@@ -28,6 +27,7 @@ gem 'underscore-rails'
 gem 'kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers'
+gem 'geocoder'
 
 group :development, :test do
   gem 'byebug', platform: :mri
