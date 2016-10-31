@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029205003) do
+ActiveRecord::Schema.define(version: 20161031223830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20161029205003) do
     t.datetime "updated_at", null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "park_id"
+    t.index ["park_id"], name: "index_park_locations_on_park_id", using: :btree
   end
 
   create_table "park_service_areas", force: :cascade do |t|
@@ -73,4 +75,5 @@ ActiveRecord::Schema.define(version: 20161029205003) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
+  add_foreign_key "park_locations", "parks"
 end

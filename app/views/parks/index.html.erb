@@ -2,12 +2,13 @@
 
 <h1>Parks</h1>
 
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>Name</th>
       <th>Acreage</th>
       <th>Old</th>
+      <th>Park Locations</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= park.name %></td>
         <td><%= park.acreage %></td>
         <td><%= park.old_id %></td>
+        <td><% park.park_locations.each do |p| %><%= p.zipcode %><% end %></td>
         <td><%= link_to 'Show', park %></td>
         <td><%= link_to 'Edit', edit_park_path(park) %></td>
         <td><%= link_to 'Destroy', park, method: :delete, data: { confirm: 'Are you sure?' } %></td>
