@@ -7,6 +7,10 @@ def to_num number
   number.gsub(/,/,'').to_i
 end
 
+def to_lat_lng location
+  location.match(/(^)/)
+end
+
 data_hash.each do |d|
   Park.find_or_create_by(
     name: d['ParkName'].present? ? d['ParkName'] : nil,
@@ -20,5 +24,8 @@ data_hash.each do |d|
   )
   ParkLocation.find_or_create_by(
     zipcode: d['Zipcode'].present? ? to_num(d['Zipcode']) : nil
+    latitude: d
   )
 end
+
+admin = User.create(email: 'admin@admin.com', password: '123456789', username: 'admin')
