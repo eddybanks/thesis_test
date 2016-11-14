@@ -35,4 +35,4 @@ data_hash.each do |d|
   )
 end
 
-admin = User.create(email: 'admin@admin.com', password: '123456789', username: 'admin')
+admin = User.create(email: 'admin@admin.com', password: '123456', username: 'admin')
