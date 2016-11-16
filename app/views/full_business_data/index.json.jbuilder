@@ -1,0 +1,1 @@
+json.array! @full_business_data, partial: 'full_business_data/full_business_datum', as: :full_business_datum

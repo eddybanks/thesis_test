@@ -1,0 +1,12 @@
+<%= simple_form_for(@business) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :account_number %>
+    <%= f.input :ownership_name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

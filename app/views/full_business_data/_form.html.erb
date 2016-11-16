@@ -1,0 +1,36 @@
+<%= simple_form_for(@full_business_datum) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :locationid %>
+    <%= f.input :business_account_number %>
+    <%= f.input :ownership_name %>
+    <%= f.input :dba_name %>
+    <%= f.input :street_address %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :source_zipcode %>
+    <%= f.input :business_start_date %>
+    <%= f.input :business_end_date %>
+    <%= f.input :location_start_date %>
+    <%= f.input :location_end_date %>
+    <%= f.input :mail_address %>
+    <%= f.input :mail_city %>
+    <%= f.input :mail_zipcode %>
+    <%= f.input :mail_state %>
+    <%= f.input :naics_code %>
+    <%= f.input :naics_code_description %>
+    <%= f.input :parking_tax %>
+    <%= f.input :transient_occupancy_tax %>
+    <%= f.input :lic_code %>
+    <%= f.input :lic_code_description %>
+    <%= f.input :supervisor_district %>
+    <%= f.input :neighborhoods %>
+    <%= f.input :business_corridor %>
+    <%= f.input :business_location %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,6 +1,11 @@
-data_hash = []
+parks_hash = []
 CSV.foreach('db/data/recreation_and_park_info.csv', headers: true) do |row|
-  data_hash << row.to_hash
+  parks_hash << row.to_hash
+end
+
+businesses_hash = []
+CSV.foreach('db/data/businesses.csv', headers: true) do |row|
+  businesses_hash << row.to_hash
 end
 
 def to_num number
@@ -13,26 +18,45 @@ def to_lat_lng location
   return { latitude: lat, longitude: lng }
 end
 
-data_hash.each do |d|
+admin = User.create(email: 'admin@admin.com', password: '123456', username: 'admin')
+
+parks_hash.each do |p|
   Park.find_or_create_by(
-    name: d['ParkName'].present? ? d['ParkName'] : nil,
-    acreage: d['Acreage'].present? ? d['Acreage'].to_f : nil,
-    old_id: d['ParkID'].present? ? to_num(d['ParkID']) : nil
+    name: p['ParkName'].present? ? p['ParkName'] : nil,
+    acreage: p['Acreage'].present? ? p['Acreage'].to_f : nil,
+    old_id: p['ParkID'].present? ? to_num(p['ParkID']) : nil
   )
   PsaManager.find_or_create_by(
-    name: d['PSAManager'].present? ? d['PSAManager'] : nil,
-    email: d['email'].present? ? d['email'] : nil,
-    number: d['number'].present? ? d['number'] : nil
+    name: p['PSAManager'].present? ? p['PSAManager'] : nil,
+    email: p['email'].present? ? p['email'] : nil,
+    number: p['number'].present? ? p['number'] : nil
   )
 end
 
-data_hash.each do |d|
+parks_hash.each do |p|
   ParkLocation.find_or_create_by(
-    zipcode: d['Zipcode'].present? ? to_num(d['Zipcode']) : nil,
-    latitude: d['Location 1'].present? ? to_lat_lng(d['Location 1'])[:latitude].to_f : nil,
-    longitude: d['Location 1'].present? ? to_lat_lng(d['Location 1'])[:longitude].to_f : nil,
-    park_id: Park.find_or_create_by(name: d['ParkName']).id
+    zipcode: p['Zipcode'].present? ? to_num(p['Zipcode']) : nil,
+    latitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:latitude].to_f : nil,
+    longitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:longitude].to_f : nil,
+    park_id: Park.find_or_create_by(name: p['ParkName']).id
   )
 end
 
-admin = User.create(email: 'admin@admin.com', password: '123456', username: 'admin')
+businesses_hash.each do |b|
+  Naic.find_or_create_by(
+    code: (x = b['NAICS Code']).present? ? x : nil,
+    description: (x = b['NAICS Code Description']).present? ? x : nil
+  )
+  Business.find_or_create_by(
+    account_number: (x = b['Business Account Number']).present? ? x : nil,
+    ownership_name: (x = b['Ownership Name']).present? ? x : nil
+  )
+end
+
+businesses_hash.each do |b|
+  FullBusinessDatum.find_or_create_by(
+    locationid: (x = b['Location Id']).present? ? x : nil,
+    business_account_number: (x = b['Business Account Number']).present? ? x : nil,
+    
+  )
+end

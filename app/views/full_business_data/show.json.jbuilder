@@ -1,0 +1,1 @@
+json.partial! "full_business_data/full_business_datum", full_business_datum: @full_business_datum

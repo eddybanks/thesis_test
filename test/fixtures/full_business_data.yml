@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  locationid: MyString
+  business_account_number: MyString
+  ownership_name: MyString
+  dba_name: MyString
+  street_address: MyString
+  city: MyString
+  state: MyString
+  source_zipcode: MyString
+  business_start_date: MyString
+  business_end_date: MyString
+  location_start_date: MyString
+  location_end_date: MyString
+  mail_address: MyString
+  mail_city: MyString
+  mail_zipcode: MyString
+  mail_state: MyString
+  naics_code: MyString
+  naics_code_description: MyString
+  parking_tax: MyString
+  transient_occupancy_tax: MyString
+  lic_code: MyString
+  lic_code_description: MyString
+  supervisor_district: MyString
+  neighborhoods: MyString
+  business_corridor: MyString
+  business_location: MyString
+
+two:
+  locationid: MyString
+  business_account_number: MyString
+  ownership_name: MyString
+  dba_name: MyString
+  street_address: MyString
+  city: MyString
+  state: MyString
+  source_zipcode: MyString
+  business_start_date: MyString
+  business_end_date: MyString
+  location_start_date: MyString
+  location_end_date: MyString
+  mail_address: MyString
+  mail_city: MyString
+  mail_zipcode: MyString
+  mail_state: MyString
+  naics_code: MyString
+  naics_code_description: MyString
+  parking_tax: MyString
+  transient_occupancy_tax: MyString
+  lic_code: MyString
+  lic_code_description: MyString
+  supervisor_district: MyString
+  neighborhoods: MyString
+  business_corridor: MyString
+  business_location: MyString

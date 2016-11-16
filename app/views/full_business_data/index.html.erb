@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Full Business Data</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Locationid</th>
+      <th>Business account number</th>
+      <th>Ownership name</th>
+      <th>Dba name</th>
+      <th>Street address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Source zipcode</th>
+      <th>Business start date</th>
+      <th>Business end date</th>
+      <th>Location start date</th>
+      <th>Location end date</th>
+      <th>Mail address</th>
+      <th>Mail city</th>
+      <th>Mail zipcode</th>
+      <th>Mail state</th>
+      <th>Naics code</th>
+      <th>Naics code description</th>
+      <th>Parking tax</th>
+      <th>Transient occupancy tax</th>
+      <th>Lic code</th>
+      <th>Lic code description</th>
+      <th>Supervisor district</th>
+      <th>Neighborhoods</th>
+      <th>Business corridor</th>
+      <th>Business location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @full_business_data.each do |full_business_datum| %>
+      <tr>
+        <td><%= full_business_datum.locationid %></td>
+        <td><%= full_business_datum.business_account_number %></td>
+        <td><%= full_business_datum.ownership_name %></td>
+        <td><%= full_business_datum.dba_name %></td>
+        <td><%= full_business_datum.street_address %></td>
+        <td><%= full_business_datum.city %></td>
+        <td><%= full_business_datum.state %></td>
+        <td><%= full_business_datum.source_zipcode %></td>
+        <td><%= full_business_datum.business_start_date %></td>
+        <td><%= full_business_datum.business_end_date %></td>
+        <td><%= full_business_datum.location_start_date %></td>
+        <td><%= full_business_datum.location_end_date %></td>
+        <td><%= full_business_datum.mail_address %></td>
+        <td><%= full_business_datum.mail_city %></td>
+        <td><%= full_business_datum.mail_zipcode %></td>
+        <td><%= full_business_datum.mail_state %></td>
+        <td><%= full_business_datum.naics_code %></td>
+        <td><%= full_business_datum.naics_code_description %></td>
+        <td><%= full_business_datum.parking_tax %></td>
+        <td><%= full_business_datum.transient_occupancy_tax %></td>
+        <td><%= full_business_datum.lic_code %></td>
+        <td><%= full_business_datum.lic_code_description %></td>
+        <td><%= full_business_datum.supervisor_district %></td>
+        <td><%= full_business_datum.neighborhoods %></td>
+        <td><%= full_business_datum.business_corridor %></td>
+        <td><%= full_business_datum.business_location %></td>
+        <td><%= link_to 'Show', full_business_datum %></td>
+        <td><%= link_to 'Edit', edit_full_business_datum_path(full_business_datum) %></td>
+        <td><%= link_to 'Destroy', full_business_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate @full_business_data %>
+
+<%= link_to 'New Full Business Datum', new_full_business_datum_path %>
