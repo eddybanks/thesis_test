@@ -1,0 +1,22 @@
+<%= simple_form_for(@full_park_datum) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :park_name %>
+    <%= f.input :park_type %>
+    <%= f.input :park_service_area %>
+    <%= f.input :psa_manager %>
+    <%= f.input :email %>
+    <%= f.input :number %>
+    <%= f.input :zipcode %>
+    <%= f.input :acreage %>
+    <%= f.input :sup_dist %>
+    <%= f.input :parkid %>
+    <%= f.input :location %>
+    <%= f.input :lat %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

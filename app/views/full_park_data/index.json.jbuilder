@@ -1,0 +1,1 @@
+json.array! @full_park_data, partial: 'full_park_data/full_park_datum', as: :full_park_datum

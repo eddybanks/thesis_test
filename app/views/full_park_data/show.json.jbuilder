@@ -1,0 +1,1 @@
+json.partial! "full_park_data/full_park_datum", full_park_datum: @full_park_datum

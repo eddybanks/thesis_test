@@ -1,0 +1,2 @@
+json.extract! full_park_datum, :id, :park_name, :park_type, :park_service_area, :psa_manager, :email, :number, :zipcode, :acreage, :sup_dist, :parkid, :location, :lat, :created_at, :updated_at
+json.url full_park_datum_url(full_park_datum, format: :json)

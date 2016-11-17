@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  park_name: MyString
+  park_type: MyString
+  park_service_area: MyString
+  psa_manager: MyString
+  email: MyString
+  number: MyString
+  zipcode: MyString
+  acreage: 1.5
+  sup_dist: 1
+  parkid: 1
+  location: MyString
+  lat: MyString
+
+two:
+  park_name: MyString
+  park_type: MyString
+  park_service_area: MyString
+  psa_manager: MyString
+  email: MyString
+  number: MyString
+  zipcode: MyString
+  acreage: 1.5
+  sup_dist: 1
+  parkid: 1
+  location: MyString
+  lat: MyString

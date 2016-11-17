@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Full Park Data</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Park name</th>
+      <th>Park type</th>
+      <th>Park service area</th>
+      <th>Psa manager</th>
+      <th>Email</th>
+      <th>Number</th>
+      <th>Zipcode</th>
+      <th>Acreage</th>
+      <th>Sup dist</th>
+      <th>Parkid</th>
+      <th>Location</th>
+      <th>Lat</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @full_park_data.each do |full_park_datum| %>
+      <tr>
+        <td><%= full_park_datum.park_name %></td>
+        <td><%= full_park_datum.park_type %></td>
+        <td><%= full_park_datum.park_service_area %></td>
+        <td><%= full_park_datum.psa_manager %></td>
+        <td><%= full_park_datum.email %></td>
+        <td><%= full_park_datum.number %></td>
+        <td><%= full_park_datum.zipcode %></td>
+        <td><%= full_park_datum.acreage %></td>
+        <td><%= full_park_datum.sup_dist %></td>
+        <td><%= full_park_datum.parkid %></td>
+        <td><%= full_park_datum.location %></td>
+        <td><%= full_park_datum.lat %></td>
+        <td><%= link_to 'Show', full_park_datum %></td>
+        <td><%= link_to 'Edit', edit_full_park_datum_path(full_park_datum) %></td>
+        <td><%= link_to 'Destroy', full_park_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= paginate @full_park_data %>
+
+<%= link_to 'New Full Park Datum', new_full_park_datum_path %>

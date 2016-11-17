@@ -1,0 +1,2 @@
+class FullParkDatum < ApplicationRecord
+end
