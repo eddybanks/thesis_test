@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :maps
   resources :full_park_data
   resources :full_business_data
   resources :businesses

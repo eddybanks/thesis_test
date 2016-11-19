@@ -57,45 +57,45 @@ end
 ###### big data with sanfrancisco business data
 
 
-# businesses_hash.each do |b|
-#   Naic.find_or_create_by(
-#     code: (x = b['NAICS Code']).present? ? x : nil,
-#     description: (x = b['NAICS Code Description']).present? ? x : nil
-#   )
-#   Business.find_or_create_by(
-#     account_number: (x = b['Business Account Number']).present? ? x : nil,
-#     ownership_name: (x = b['Ownership Name']).present? ? x : nil
-#   )
-#   Lic.find_or_create_by(
-#     code: (x = b['LIC Code']).present? ? x : nil,
-#     description: (x = b['LIC Code Description']).present? ? x : nil
-#   )
-#   FullBusinessDatum.find_or_create_by(
-#     locationid: (x = b['Location Id']).present? ? x : nil,
-#     business_account_number: (x = b['Business Account Number']).present? ? x : nil,
-#     ownership_name: (x = b['Ownership Name']).present? ? x : nil,
-#     dba_name: (x = b['DBA Name']).present? ? x : nil,
-#     street_address: (x = b['Street Address']).present? ? x : nil,
-#     city: (x = b['City']).present? ? x : nil,
-#     state: (x = b['State']).present? ? x : nil,
-#     source_zipcode: (x = b['Source Zipcode']).present? ? x : nil,
-#     business_start_date: (x = b['Business Start Date']).present? ? x : nil,
-#     business_end_date: (x = b['Business End Date']).present? ? x : nil,
-#     location_start_date: (x = b['Location Start Date']).present? ? x : nil,
-#     location_end_date: (x = b['Location End Date']).present? ? x : nil,
-#     mail_address: (x = b['Mail Address']).present? ? x : nil,
-#     mail_city: (x = b['Mail City']).present? ? x : nil,
-#     mail_zipcode: (x = b['Mail Zipcode']).present? ? x : nil,
-#     mail_state: (x = b['Mail State']).present? ? x : nil,
-#     naics_code: (x = b['NAICS Code']).present? ? x : nil,
-#     naics_code_description: (x = b['NAICS Code Description']).present? ? x : nil,
-#     parking_tax: (x = b['Parking Tax']).present? ? x : nil,
-#     transient_occupancy_tax: (x = b['Transient Occupancy Tax']).present? ? x : nil,
-#     lic_code: (x = b['LIC Code']).present? ? x : nil,
-#     lic_code_description: (x = b['LIC Code Description']).present? ? x : nil,
-#     supervisor_district: (x = b['Supervisor District']).present? ? x : nil,
-#     neighborhoods: (x = b['Neighborhoods-Analysis Boundaries']).present? ? x : nil,
-#     business_corridor: (x = b['Business Corridor']).present? ? x : nil,
-#     business_location: (x = b['Business Location']).present? ? x : nil
-#   )
-# end
+businesses_hash.each do |b|
+  Naic.find_or_create_by(
+    code: (x = b['NAICS Code']).present? ? x : nil,
+    description: (x = b['NAICS Code Description']).present? ? x : nil
+  )
+  Business.find_or_create_by(
+    account_number: (x = b['Business Account Number']).present? ? x : nil,
+    ownership_name: (x = b['Ownership Name']).present? ? x : nil
+  )
+  Lic.find_or_create_by(
+    code: (x = b['LIC Code']).present? ? x : nil,
+    description: (x = b['LIC Code Description']).present? ? x : nil
+  )
+  FullBusinessDatum.find_or_create_by(
+    locationid: (x = b['Location Id']).present? ? x : nil,
+    business_account_number: (x = b['Business Account Number']).present? ? x : nil,
+    ownership_name: (x = b['Ownership Name']).present? ? x : nil,
+    dba_name: (x = b['DBA Name']).present? ? x : nil,
+    street_address: (x = b['Street Address']).present? ? x : nil,
+    city: (x = b['City']).present? ? x : nil,
+    state: (x = b['State']).present? ? x : nil,
+    source_zipcode: (x = b['Source Zipcode']).present? ? x : nil,
+    business_start_date: (x = b['Business Start Date']).present? ? x : nil,
+    business_end_date: (x = b['Business End Date']).present? ? x : nil,
+    location_start_date: (x = b['Location Start Date']).present? ? x : nil,
+    location_end_date: (x = b['Location End Date']).present? ? x : nil,
+    mail_address: (x = b['Mail Address']).present? ? x : nil,
+    mail_city: (x = b['Mail City']).present? ? x : nil,
+    mail_zipcode: (x = b['Mail Zipcode']).present? ? x : nil,
+    mail_state: (x = b['Mail State']).present? ? x : nil,
+    naics_code: (x = b['NAICS Code']).present? ? x : nil,
+    naics_code_description: (x = b['NAICS Code Description']).present? ? x : nil,
+    parking_tax: (x = b['Parking Tax']).present? ? x : nil,
+    transient_occupancy_tax: (x = b['Transient Occupancy Tax']).present? ? x : nil,
+    lic_code: (x = b['LIC Code']).present? ? x : nil,
+    lic_code_description: (x = b['LIC Code Description']).present? ? x : nil,
+    supervisor_district: (x = b['Supervisor District']).present? ? x : nil,
+    neighborhoods: (x = b['Neighborhoods-Analysis Boundaries']).present? ? x : nil,
+    business_corridor: (x = b['Business Corridor']).present? ? x : nil,
+    business_location: (x = b['Business Location']).present? ? x : nil
+  )
+end
