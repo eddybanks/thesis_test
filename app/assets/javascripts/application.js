@@ -3,10 +3,10 @@
 //= require jquery_ujs
 //= require underscore
 //= require gmaps/google
-//= require vue
-//= require vue-router
-//= require vue-resource
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
 
 let startup = function() {

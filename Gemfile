@@ -13,7 +13,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'gmaps4rails'
 gem 'figaro'
-gem 'vuejs-rails'
+gem 'react-rails'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'graphql'
 gem "graphiql-rails"
