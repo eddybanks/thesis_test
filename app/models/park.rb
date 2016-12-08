@@ -1,5 +1,7 @@
 class Park < ApplicationRecord
-  has_many :park_locations
+  belongs_to :park_location
+  belongs_to :psa_manager
+  belongs_to :park_area_dist
 
   paginates_per 20
 end

@@ -28,6 +28,8 @@ gem 'kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers'
 gem 'geocoder'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do
   gem 'byebug', platform: :mri

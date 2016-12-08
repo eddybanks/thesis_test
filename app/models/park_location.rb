@@ -1,3 +1,3 @@
 class ParkLocation < ApplicationRecord
-  belongs_to :park
+  has_many :parks
 end

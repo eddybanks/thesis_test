@@ -1,11 +1,6 @@
-parks_hash = []
-CSV.foreach('db/data/recreation_and_park_info.csv', headers: true) do |row|
-  parks_hash << row.to_hash
-end
-
-businesses_hash = []
-CSV.foreach('db/data/businesses.csv', headers: true) do |row|
-  businesses_hash << row.to_hash
+## helper methods for seed file
+def to_arr str
+  str.split(/,|\*|\|/).each(&:strip!)
 end
 
 def to_num number
@@ -18,24 +13,45 @@ def to_lat_lng location
   return { latitude: lat, longitude: lng }
 end
 
+## Data extraction from CSV files
+parks_hash = []
+CSV.foreach('db/data/recreation_and_park_info.csv', headers: true) do |row|
+  parks_hash << row.to_hash
+end
+
+# businesses_hash = []
+# CSV.foreach('db/data/businesses.csv', headers: true) do |row|
+#   businesses_hash << row.to_hash
+# end
+
+
+## Uniq hashes within parks_hash
+p_hashes = [:park_service_area, :sup_dist]
+
 admin = User.create(email: 'admin@admin.com', password: '123456', username: 'admin')
 
 parks_hash.each do |p|
-  Park.find_or_create_by(
-    name: p['ParkName'].present? ? p['ParkName'] : nil,
-    acreage: p['Acreage'].present? ? p['Acreage'].to_f : nil,
-    old_id: p['ParkID'].present? ? to_num(p['ParkID']) : nil
-  )
-  PsaManager.find_or_create_by(
+  psa_m = PsaManager.find_or_create_by(
     name: p['PSAManager'].present? ? p['PSAManager'] : nil,
     email: p['email'].present? ? p['email'] : nil,
     number: p['number'].present? ? p['number'] : nil
   )
-  ParkLocation.find_or_create_by(
+  park_loc = ParkLocation.find_or_create_by(
     zipcode: p['Zipcode'].present? ? to_num(p['Zipcode']) : nil,
     latitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:latitude].to_f : nil,
-    longitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:longitude].to_f : nil,
-    park_id: Park.find_or_create_by(name: p['ParkName']).id
+    longitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:longitude].to_f : nil
+  )
+  park_area = ParkAreaDist.find_or_create_by(
+    park_service_area: (x = p['ParkServiceArea']).present? ? x : nil,
+    sup_dist: (x = p['SupDist']).present? ? x : nil
+  )
+  park = Park.find_or_create_by(
+    name: p['ParkName'].present? ? p['ParkName'] : nil,
+    acreage: p['Acreage'].present? ? p['Acreage'].to_f : nil,
+    old_id: p['ParkID'].present? ? to_num(p['ParkID']) : nil,
+    psa_manager_id: (x = psa_m.id).present? ? x : nil,
+    park_location_id: (x = park_loc.id).present? ? x : nil,
+    park_area_dist_id: (x = park_area.id).present? ? x : nil
   )
   FullParkDatum.find_or_create_by(
     park_name: (x = p['ParkName']).present? ? x : nil,
@@ -57,45 +73,45 @@ end
 ###### big data with sanfrancisco business data
 
 
-businesses_hash.each do |b|
-  Naic.find_or_create_by(
-    code: (x = b['NAICS Code']).present? ? x : nil,
-    description: (x = b['NAICS Code Description']).present? ? x : nil
-  )
-  Business.find_or_create_by(
-    account_number: (x = b['Business Account Number']).present? ? x : nil,
-    ownership_name: (x = b['Ownership Name']).present? ? x : nil
-  )
-  Lic.find_or_create_by(
-    code: (x = b['LIC Code']).present? ? x : nil,
-    description: (x = b['LIC Code Description']).present? ? x : nil
-  )
-  FullBusinessDatum.find_or_create_by(
-    locationid: (x = b['Location Id']).present? ? x : nil,
-    business_account_number: (x = b['Business Account Number']).present? ? x : nil,
-    ownership_name: (x = b['Ownership Name']).present? ? x : nil,
-    dba_name: (x = b['DBA Name']).present? ? x : nil,
-    street_address: (x = b['Street Address']).present? ? x : nil,
-    city: (x = b['City']).present? ? x : nil,
-    state: (x = b['State']).present? ? x : nil,
-    source_zipcode: (x = b['Source Zipcode']).present? ? x : nil,
-    business_start_date: (x = b['Business Start Date']).present? ? x : nil,
-    business_end_date: (x = b['Business End Date']).present? ? x : nil,
-    location_start_date: (x = b['Location Start Date']).present? ? x : nil,
-    location_end_date: (x = b['Location End Date']).present? ? x : nil,
-    mail_address: (x = b['Mail Address']).present? ? x : nil,
-    mail_city: (x = b['Mail City']).present? ? x : nil,
-    mail_zipcode: (x = b['Mail Zipcode']).present? ? x : nil,
-    mail_state: (x = b['Mail State']).present? ? x : nil,
-    naics_code: (x = b['NAICS Code']).present? ? x : nil,
-    naics_code_description: (x = b['NAICS Code Description']).present? ? x : nil,
-    parking_tax: (x = b['Parking Tax']).present? ? x : nil,
-    transient_occupancy_tax: (x = b['Transient Occupancy Tax']).present? ? x : nil,
-    lic_code: (x = b['LIC Code']).present? ? x : nil,
-    lic_code_description: (x = b['LIC Code Description']).present? ? x : nil,
-    supervisor_district: (x = b['Supervisor District']).present? ? x : nil,
-    neighborhoods: (x = b['Neighborhoods-Analysis Boundaries']).present? ? x : nil,
-    business_corridor: (x = b['Business Corridor']).present? ? x : nil,
-    business_location: (x = b['Business Location']).present? ? x : nil
-  )
-end
+# businesses_hash.each do |b|
+#   Naic.find_or_create_by(
+#     code: (x = b['NAICS Code']).present? ? x : nil,
+#     description: (x = b['NAICS Code Description']).present? ? x : nil
+#   )
+#   Business.find_or_create_by(
+#     account_number: (x = b['Business Account Number']).present? ? x : nil,
+#     ownership_name: (x = b['Ownership Name']).present? ? x : nil
+#   )
+#   Lic.find_or_create_by(
+#     code: (x = b['LIC Code']).present? ? x : nil,
+#     description: (x = b['LIC Code Description']).present? ? x : nil
+#   )
+#   FullBusinessDatum.find_or_create_by(
+#     locationid: (x = b['Location Id']).present? ? x : nil,
+#     business_account_number: (x = b['Business Account Number']).present? ? x : nil,
+#     ownership_name: (x = b['Ownership Name']).present? ? x : nil,
+#     dba_name: (x = b['DBA Name']).present? ? x : nil,
+#     street_address: (x = b['Street Address']).present? ? x : nil,
+#     city: (x = b['City']).present? ? x : nil,
+#     state: (x = b['State']).present? ? x : nil,
+#     source_zipcode: (x = b['Source Zipcode']).present? ? x : nil,
+#     business_start_date: (x = b['Business Start Date']).present? ? x : nil,
+#     business_end_date: (x = b['Business End Date']).present? ? x : nil,
+#     location_start_date: (x = b['Location Start Date']).present? ? x : nil,
+#     location_end_date: (x = b['Location End Date']).present? ? x : nil,
+#     mail_address: (x = b['Mail Address']).present? ? x : nil,
+#     mail_city: (x = b['Mail City']).present? ? x : nil,
+#     mail_zipcode: (x = b['Mail Zipcode']).present? ? x : nil,
+#     mail_state: (x = b['Mail State']).present? ? x : nil,
+#     naics_code: (x = b['NAICS Code']).present? ? x : nil,
+#     naics_code_description: (x = b['NAICS Code Description']).present? ? x : nil,
+#     parking_tax: (x = b['Parking Tax']).present? ? x : nil,
+#     transient_occupancy_tax: (x = b['Transient Occupancy Tax']).present? ? x : nil,
+#     lic_code: (x = b['LIC Code']).present? ? x : nil,
+#     lic_code_description: (x = b['LIC Code Description']).present? ? x : nil,
+#     supervisor_district: (x = b['Supervisor District']).present? ? x : nil,
+#     neighborhoods: (x = b['Neighborhoods-Analysis Boundaries']).present? ? x : nil,
+#     business_corridor: (x = b['Business Corridor']).present? ? x : nil,
+#     business_location: (x = b['Business Location']).present? ? x : nil
+#   )
+# end

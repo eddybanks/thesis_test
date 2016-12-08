@@ -19,7 +19,7 @@
         <td><%= park.name %></td>
         <td><%= park.acreage %></td>
         <td><%= park.old_id %></td>
-        <td><% park.park_locations.each do |p| %><%= p.zipcode %><% end %></td>
+        <td><%= park.park_location.zipcode %></td>
         <td><%= link_to 'Show', park %></td>
         <td><%= link_to 'Edit', edit_park_path(park) %></td>
         <td><%= link_to 'Destroy', park, method: :delete, data: { confirm: 'Are you sure?' } %></td>
