@@ -1,0 +1,2 @@
+class FilmFunFact < ApplicationRecord
+end

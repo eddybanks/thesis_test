@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  film: one
+  film_fun_fact: one
+
+two:
+  film: two
+  film_fun_fact: two

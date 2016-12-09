@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :films
   resources :full_film_location_data
   resources :park_psa_managers
   resources :maps

@@ -19,12 +19,24 @@ CSV.foreach('db/data/recreation_and_park_info.csv', headers: true) do |row|
   parks_hash << row.to_hash
 end
 
+films_hash = []
+CSV.foreach('db/data/film_locations.csv', headers: true) do |row|
+  films_hash << row.to_hash
+end
+
 # businesses_hash = []
 # CSV.foreach('db/data/businesses.csv', headers: true) do |row|
 #   businesses_hash << row.to_hash
 # end
 
-admin = User.create(email: 'admin@admin.com', password: '123456', username: 'admin')
+users = [
+  { email: 'admin@admin.com', password: '123456', username: 'admin' },
+  { email: 'smith@syo.com', password: '123456', username: 'smith' },
+  { email: 'dane@smith.com', password: '123456', username: 'dane' },
+  { email: 'idi@unm.edu', password: '123456', username: 'idi' },
+  { email: 'test@test.com', password: '123456', username: 'test' }
+]
+users.each{ |u| User.create(u) }
 
 parks_hash.each do |p|
   FullParkDatum.find_or_create_by(
@@ -46,6 +58,9 @@ end
 ## Uniq hashes within parks_hash
 p_hashes = [:park_service_area, :sup_dist, :park_type, :zipcode]
 p_hashes.each{ |h| FullParkDatum.pluck(h).uniq }
+
+
+###### parks and recreations data
 
 parks_hash.each do |p|
   psa_m = ParkPsaManager.find_or_create_by(
@@ -76,7 +91,42 @@ parks_hash.each do |p|
   )
 end
 
+###### film locations data
 
+@full_film_location_data = []
+
+films_hash.each do |f|
+  film_loc = FullFilmLocationDatum.find_or_create_by(
+    title: (x = f['Title']).present? ? x : nil,
+    release_year: (x = f['Release Year']).present? ? x : nil,
+    locations: (x = f['Locations']).present? ? x : nil,
+    fun_facts: (x = f['Fun Facts']).present? ? x : nil,
+    production_company: (x = f['Production Company']).present? ? x : nil,
+    distributor: (x = f['Distributor']).present? ? x : nil,
+    director: (x = f['Director']).present? ? x : nil,
+    writer: (x = f['Writer']).present? ? x : nil,
+    actor1: (x = f['Actor 1']).present? ? x : nil,
+    actor2: (x = f['Actor 2']).present? ? x : nil,
+    actor3: (x = f['Actor 3']).present? ? x : nil
+  )
+  @full_film_location_data << film_loc
+end
+
+@full_film_location_data.each do |f|
+  film = Film.find_or_create_by(title: f.title)
+  film_location = FilmLocation.find_or_create_by(
+    location: f.location
+  )
+  FilmAndFilmLocation.find_or_create_by(
+    film_id: (x = film.id).present? ? x : nil,
+    film_location_id: (x = film_location.id).present? ? x : nil
+  )
+  film_fun_fact = FilmFunFact.find_or_create_by(fun_fact: f.fun_facts)
+  FilmAndFilmFunFact.find_or_create_by(
+    film_id: (x = film.id).present? ? x : nil,
+    film_fun_fact_id: (x = film_fun_fact.id).present? ? x : nil
+  )
+end
 ###### big data with sanfrancisco business data
 
 
