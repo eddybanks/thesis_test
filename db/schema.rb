@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208035110) do
+ActiveRecord::Schema.define(version: 20161208233248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,14 +107,25 @@ ActiveRecord::Schema.define(version: 20161208035110) do
 
   create_table "park_locations", force: :cascade do |t|
     t.integer  "zipcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "address"
+    t.integer  "park_zipcode_id"
+    t.index ["park_zipcode_id"], name: "index_park_locations_on_park_zipcode_id", using: :btree
   end
 
-  create_table "park_service_areas", force: :cascade do |t|
+  create_table "park_psa_managers", force: :cascade do |t|
     t.string   "name"
+    t.string   "email"
+    t.string   "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "park_zipcodes", force: :cascade do |t|
+    t.integer  "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -123,22 +134,14 @@ ActiveRecord::Schema.define(version: 20161208035110) do
     t.string   "name"
     t.float    "acreage"
     t.integer  "old_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "psa_manager_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "park_area_dist_id"
     t.integer  "park_location_id"
+    t.integer  "park_psa_manager_id"
     t.index ["park_area_dist_id"], name: "index_parks_on_park_area_dist_id", using: :btree
     t.index ["park_location_id"], name: "index_parks_on_park_location_id", using: :btree
-    t.index ["psa_manager_id"], name: "index_parks_on_psa_manager_id", using: :btree
-  end
-
-  create_table "psa_managers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["park_psa_manager_id"], name: "index_parks_on_park_psa_manager_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -170,7 +173,8 @@ ActiveRecord::Schema.define(version: 20161208035110) do
   end
 
   add_foreign_key "locations", "users"
+  add_foreign_key "park_locations", "park_zipcodes"
   add_foreign_key "parks", "park_area_dists"
   add_foreign_key "parks", "park_locations"
-  add_foreign_key "parks", "psa_managers"
+  add_foreign_key "parks", "park_psa_managers"
 end

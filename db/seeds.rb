@@ -24,38 +24,12 @@ end
 #   businesses_hash << row.to_hash
 # end
 
-
-## Uniq hashes within parks_hash
-p_hashes = [:park_service_area, :sup_dist]
-
 admin = User.create(email: 'admin@admin.com', password: '123456', username: 'admin')
 
 parks_hash.each do |p|
-  psa_m = PsaManager.find_or_create_by(
-    name: p['PSAManager'].present? ? p['PSAManager'] : nil,
-    email: p['email'].present? ? p['email'] : nil,
-    number: p['number'].present? ? p['number'] : nil
-  )
-  park_loc = ParkLocation.find_or_create_by(
-    zipcode: p['Zipcode'].present? ? to_num(p['Zipcode']) : nil,
-    latitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:latitude].to_f : nil,
-    longitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:longitude].to_f : nil
-  )
-  park_area = ParkAreaDist.find_or_create_by(
-    park_service_area: (x = p['ParkServiceArea']).present? ? x : nil,
-    sup_dist: (x = p['SupDist']).present? ? x : nil
-  )
-  park = Park.find_or_create_by(
-    name: p['ParkName'].present? ? p['ParkName'] : nil,
-    acreage: p['Acreage'].present? ? p['Acreage'].to_f : nil,
-    old_id: p['ParkID'].present? ? to_num(p['ParkID']) : nil,
-    psa_manager_id: (x = psa_m.id).present? ? x : nil,
-    park_location_id: (x = park_loc.id).present? ? x : nil,
-    park_area_dist_id: (x = park_area.id).present? ? x : nil
-  )
   FullParkDatum.find_or_create_by(
     park_name: (x = p['ParkName']).present? ? x : nil,
-    park_type: (x = p['PartType']).present? ? x : nil,
+    park_type: (x = p['ParkType']).present? ? x : nil,
     park_service_area: (x = p['ParkServiceArea']).present? ? x : nil,
     psa_manager: (x = p['PSAManager']).present? ? x : nil,
     email: (x = p['email']).present? ? x : nil,
@@ -66,6 +40,39 @@ parks_hash.each do |p|
     parkid: (x = p['ParkID']).present? ? x : nil,
     location: (x = p['Location 1']).present? ? x : nil,
     lat: (x = p['Lat']).present? ? x : nil
+  )
+end
+
+## Uniq hashes within parks_hash
+p_hashes = [:park_service_area, :sup_dist, :park_type, :zipcode]
+p_hashes.each{ |h| FullParkDatum.pluck(h).uniq }
+
+parks_hash.each do |p|
+  psa_m = ParkPsaManager.find_or_create_by(
+    name: p['PSAManager'].present? ? p['PSAManager'] : nil,
+    email: p['email'].present? ? p['email'] : nil,
+    number: p['number'].present? ? p['number'] : nil
+  )
+  zip = ParkZipcode.find_or_create_by(
+    code: p['Zipcode'].present? ? to_num(p['Zipcode']) : nil
+  )
+  park_loc = ParkLocation.find_or_create_by(
+    address: (x = p['Location 1']).present? ? x : nil,
+    latitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:latitude].to_f : nil,
+    longitude: p['Location 1'].present? ? to_lat_lng(p['Location 1'])[:longitude].to_f : nil,
+    park_zipcode_id: (x = zip.id).present? ? x : nil
+  )
+  park_area = ParkAreaDist.find_or_create_by(
+    park_service_area: (x = p['ParkServiceArea']).present? ? x : nil,
+    sup_dist: (x = p['SupDist']).present? ? x : nil
+  )
+  park = Park.find_or_create_by(
+    name: p['ParkName'].present? ? p['ParkName'] : nil,
+    acreage: p['Acreage'].present? ? p['Acreage'].to_f : nil,
+    old_id: p['ParkID'].present? ? to_num(p['ParkID']) : nil,
+    park_psa_manager_id: (x = psa_m.id).present? ? x : nil,
+    park_location_id: (x = park_loc.id).present? ? x : nil,
+    park_area_dist_id: (x = park_area.id).present? ? x : nil
   )
 end
 

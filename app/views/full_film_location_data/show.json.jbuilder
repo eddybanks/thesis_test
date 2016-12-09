@@ -1,0 +1,1 @@
+json.partial! "full_film_location_data/full_film_location_datum", full_film_location_datum: @full_film_location_datum

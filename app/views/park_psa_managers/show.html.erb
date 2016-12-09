@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @park_psa_manager.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @park_psa_manager.email %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @park_psa_manager.number %>
+</p>
+
+<%= link_to 'Edit', edit_park_psa_manager_path(@park_psa_manager) %> |
+<%= link_to 'Back', park_psa_managers_path %>

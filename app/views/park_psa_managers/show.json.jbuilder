@@ -1,0 +1,1 @@
+json.partial! "park_psa_managers/park_psa_manager", park_psa_manager: @park_psa_manager

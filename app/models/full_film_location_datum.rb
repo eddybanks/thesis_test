@@ -1,0 +1,2 @@
+class FullFilmLocationDatum < ApplicationRecord
+end

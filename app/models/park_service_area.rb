@@ -1,2 +1,0 @@
-class ParkServiceArea < ApplicationRecord
-end

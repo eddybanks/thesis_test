@@ -1,0 +1,2 @@
+class ParkZipcode < ApplicationRecord
+end

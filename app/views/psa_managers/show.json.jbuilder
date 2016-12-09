@@ -1,1 +1,0 @@
-json.partial! "psa_managers/psa_manager", psa_manager: @psa_manager

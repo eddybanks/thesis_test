@@ -1,6 +1,6 @@
-class CreatePsaManagers < ActiveRecord::Migration[5.0]
+class CreateParkPsaManagers < ActiveRecord::Migration[5.0]
   def change
-    create_table :psa_managers do |t|
+    create_table :park_psa_managers do |t|
       t.string :name
       t.string :email
       t.string :number

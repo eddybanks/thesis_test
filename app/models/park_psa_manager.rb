@@ -1,0 +1,2 @@
+class ParkPsaManager < ApplicationRecord
+end

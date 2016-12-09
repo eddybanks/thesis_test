@@ -1,0 +1,21 @@
+<%= simple_form_for(@full_film_location_datum) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :release_year %>
+    <%= f.input :locations %>
+    <%= f.input :fun_facts %>
+    <%= f.input :production_company %>
+    <%= f.input :distributor %>
+    <%= f.input :director %>
+    <%= f.input :writer %>
+    <%= f.input :actor1 %>
+    <%= f.input :actor2 %>
+    <%= f.input :actor3 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

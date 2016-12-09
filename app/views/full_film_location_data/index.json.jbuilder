@@ -1,0 +1,1 @@
+json.array! @full_film_location_data, partial: 'full_film_location_data/full_film_location_datum', as: :full_film_location_datum
