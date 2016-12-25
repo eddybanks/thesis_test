@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @film_company.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @film_company.type %>
+</p>
+
+<%= link_to 'Edit', edit_film_company_path(@film_company) %> |
+<%= link_to 'Back', film_companies_path %>

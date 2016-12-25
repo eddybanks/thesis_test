@@ -115,7 +115,7 @@ end
 @full_film_location_data.each do |f|
   film = Film.find_or_create_by(title: f.title)
   film_location = FilmLocation.find_or_create_by(
-    location: f.location
+    location: f.locations
   )
   FilmAndFilmLocation.find_or_create_by(
     film_id: (x = film.id).present? ? x : nil,
@@ -125,6 +125,9 @@ end
   FilmAndFilmFunFact.find_or_create_by(
     film_id: (x = film.id).present? ? x : nil,
     film_fun_fact_id: (x = film_fun_fact.id).present? ? x : nil
+  )
+  film.distributors.find_or_create_by(
+    name: (x = f.distributor).present? ? x : nil
   )
 end
 ###### big data with sanfrancisco business data
