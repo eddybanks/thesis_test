@@ -30,6 +30,6 @@ QueryType = GraphQL::ObjectType.define do
   end
 end
 
-Schema = GrapahQL::Schema.define do
+Schema = GraphQL::Schema.define do
   query QueryType
 end
