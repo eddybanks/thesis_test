@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -22,7 +22,7 @@ gem 'paper_trail'
 gem 'simple_form'
 gem 'rails_admin', '~> 1.0'
 gem 'devise'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'underscore-rails'
 gem 'kaminari'
 gem 'rack-cors', :require => 'rack/cors'
@@ -30,6 +30,7 @@ gem 'active_model_serializers'
 gem 'geocoder'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'rails-assets-tether', '>= 1.3.3', source: 'https://rails-assets.org'
 
 group :development, :test do
   gem 'byebug', platform: :mri

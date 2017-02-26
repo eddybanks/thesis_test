@@ -1,27 +1,17 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-body">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to 'Thesis Test', root_path, class: 'navbar-brand' %>
-    </div>
-    <div class="collapse navbar-collapse" id="nav-body">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Map', maps_path %></li>
-        <li><%= link_to 'Parks', parks_path %></li>
-        <li><%= link_to 'PSA Managers', park_psa_managers_path %></li>
-        <li><%= link_to 'Full Park Data', full_park_data_path %></li>
-        <li><%= link_to 'Full Business Data', full_business_data_path %></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div>
+    <%= link_to 'Thesis Test', root_path, class: 'navbar-brand' %>
+  </div>
+  <div class="collapse navbar-collapse" id="nav-body">
+    <ul class="navbar-nav">
+      <li class="nav-item"><%= link_to 'Map', maps_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Parks', parks_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'PSA Managers', park_psa_managers_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Full Park Data', full_park_data_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Full Business Data', full_business_data_path, class: 'nav-link' %></li>
+    </ul>
   </div>
 </nav>
